@@ -4,6 +4,7 @@ import http from "http";
 import mongoose from "mongoose";
 import cors from "cors";
 import bodyParser from "body-parser";
+import { Server } from "socket.io";
 
 dotenv.config();
 
@@ -74,10 +75,41 @@ function startServer() {
   const mongoURL = process.env.MONGO_URL;
   mongoose
     .connect(mongoURL)
-    .then(() => {
-      console.log("Connected to mongoDB successfully!");
-    })
-    .catch((error) => {
-      console.log("Unable to connect!", error);
+    .then(() => console.log("Connected to mongoDB successfully!"))
+    .catch((error) => console.log("Unable to connect!", error));
+
+  app.use(cors({ origin: "*" }));
+
+  app.get("/", (req, res) => {
+    res.send("Welcome");
+  });
+
+  const httpServer = http.createServer(app);
+  const io = new Server(httpServer, {
+    cors: {
+      origin: "*",
+      methods: ["GET", "POST"],
+    },
+  });
+
+  let user = "test";
+
+  io.on("connection", (socket) => {
+    socket.on("joinRoom", (userId) => {
+      user = userId;
+      console.log("=====");
+      console.log(user);
+      console.log("=====");
     });
+  });
+
+  const db = mongoose.connection;
+
+  db.once("open", async () => {
+    console.log("CRUD operations called");
+  });
+
+  httpServer.listen(port, () => {
+    console.log(`Server running on port: ${port}`);
+  });
 }
