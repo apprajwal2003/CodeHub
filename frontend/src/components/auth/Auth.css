@@ -1,0 +1,59 @@
+/* Auth.css */
+
+body {
+  background-color: #0d1117;
+  color: #c9d1d9;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Card Styling */
+.card {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  color: #c9d1d9;
+}
+
+/* Form Labels */
+.form-label {
+  color: #c9d1d9;
+}
+
+/* Inputs */
+.form-control {
+  background-color: #0d1117;
+  color: #c9d1d9;
+  border: 1px solid #30363d;
+}
+
+.form-control:focus {
+  background-color: #0d1117;
+  color: #c9d1d9;
+  border-color: #238636;
+  box-shadow: 0 0 0 0.2rem rgba(35, 134, 54, 0.25);
+}
+
+/* Button */
+.btn-success {
+  background-color: #238636;
+  border-color: #238636;
+}
+
+.btn-success:hover {
+  background-color: #2ea043;
+  border-color: #2ea043;
+}
+
+/* Form Text */
+.form-text {
+  color: #8b949e;
+}
+
+/* Links */
+a {
+  color: #58a6ff;
+}
+
+a:hover {
+  text-decoration: underline;
+}

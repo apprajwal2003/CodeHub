@@ -47,7 +47,7 @@ export const signup = async (req, res) => {
       { expiresIn: "1h" }
     );
 
-    res.json({ token });
+    res.json({ token, userID: result.insertedId });
   } catch (error) {
     console.error("Unable to signup", error.message);
     res.status(500).send("Server error");
@@ -75,7 +75,7 @@ export const login = async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY, {
       expiresIn: "1h",
     });
-    res.json({ token, userId: user._id });
+    res.json({ token, userID: user._id });
   } catch (error) {
     console.error("Unable to login", error.message);
     res.status(500).send("Server error");
