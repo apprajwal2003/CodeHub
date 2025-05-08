@@ -26,7 +26,7 @@ export default function Signup() {
       setCurrentUser(res.data.userID);
       setLoading(false);
 
-      window.location.href = "/";
+      window.location.href = "/login";
     } catch (error) {
       console.error(error);
       alert("Signup Failed");

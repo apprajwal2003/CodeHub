@@ -15,6 +15,11 @@ export const createRepository = async (req, res) => {
       return res.status(400).json({ error: "Invalid user ID" });
     }
 
+    const userExists = await User.findById(owner);
+    if (!userExists) {
+      return res.status(404).json({ error: "Invalid user ID" });
+    }
+
     const newRepo = new Repository({
       name,
       description,
@@ -40,7 +45,7 @@ export const getAllRepository = async (req, res) => {
     const repositories = await Repository.find({})
       .populate("owner")
       .populate("issues");
-    res.json(repositories);
+    res.json({ repositories });
   } catch (error) {
     console.error("Unable to fetch all Repositories", error.message);
     res.status(500).send("Server error");
@@ -75,7 +80,7 @@ export const fetchRepositoryByName = async (req, res) => {
 
 export const fetchRepositoryForCurrentUser = async (req, res) => {
   try {
-    const repoID = req.user;
+    const repoID = req.params.id;
     const repository = await Repository.find({ owner: repoID })
       .populate("owner")
       .populate("issues");

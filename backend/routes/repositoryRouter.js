@@ -12,16 +12,13 @@ import {
 
 const repoRouter = express.Router();
 
-repoRouter.post("/createRepository", createRepository);
-repoRouter.get("/getAllRepository", getAllRepository);
-repoRouter.get("/fetchRepositoryById/:id", fetchRepositoryById);
-repoRouter.get("/fetchRepositoryByName/:name", fetchRepositoryByName);
-repoRouter.get(
-  "/fetchRepositoryForCurrentUser/:id",
-  fetchRepositoryForCurrentUser
-);
-repoRouter.put("/updateRepositoryById/:id", updateRepositoryById);
+repoRouter.post("/create", createRepository);
+repoRouter.get("/getAll", getAllRepository);
+repoRouter.get("/fetchById/:id", fetchRepositoryById);
+repoRouter.get("/fetchByName/:name", fetchRepositoryByName);
+repoRouter.get("/fetchForCurrentUser/:id", fetchRepositoryForCurrentUser);
+repoRouter.put("/updateById/:id", updateRepositoryById);
 repoRouter.patch("/toggleVisibilityById/:id", toggleVisibilityById);
-repoRouter.delete("/deleteRepositoryById/:id", deleteRepositoryById);
+repoRouter.delete("/deleteById/:id", deleteRepositoryById);
 
 export { repoRouter };
